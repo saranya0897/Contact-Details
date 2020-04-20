@@ -1,0 +1,103 @@
+<div class="container" style="text-align: center;padding-top: 15rem;" *ngIf="login">
+  <h2>Login</h2>
+  <form #loginForm="ngForm">
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput name="email" [(ngModel)]="email" required #email1="ngModel"
+          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <div *ngIf="email1.errors && (email1.dirty || email1.touched || loginForm.submitted )">
+        <small *ngIf="email1.errors.required" class="text-danger">Email is required</small>
+        <small *ngIf="email1.errors.pattern" class="text-danger">Invalid Email ID</small>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input [type]="hide?'text':'password'" matInput name="password" [(ngModel)]="password" required #pwd="ngModel">
+        <mat-icon matSuffix (click)="hide = !hide" class="mat-icons-color">
+          {{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <div *ngIf="pwd.errors && (pwd.dirty || pwd.touched || loginForm.submitted )">
+        <small *ngIf="pwd.errors.required && !password " class="text-danger">Password is requried</small>
+        <small *ngIf="pwd.errors.pattern" class="text-danger">Invalid Password.</small>
+      </div>
+    </div>
+    <button mat-raised-button type="submit" (click)="onSubmit(loginForm)">Submit</button>
+    <div>&nbsp;</div>
+    <div>
+      <span class="loginurl" (click)="login=false;signUp=true">Register</span>
+    </div>
+  </form>
+</div>
+
+
+<div class="container" style="text-align: center;padding-top: 12rem;" *ngIf="signUp">
+  <h2>Sign Up</h2>
+  <form #registerForm="ngForm">
+
+    <!-- Name -->
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput name="name" [(ngModel)]="name" required>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput name="email" [(ngModel)]="email" required>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+  
+    <!-- Mobile Number -->
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Mobile Number</mat-label>
+        <input type="text" name="mobileno" [(ngModel)]="mobileno" matInput
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Password -->
+    <div class="col-md-12">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input [type]="hide?'text':'password'" matInput name="password" [(ngModel)]="password" required>
+        <mat-icon matSuffix (click)="hide = !hide" class="mat-icons-color">
+          {{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Confirm password -->
+    <div class="col-md-12">
+      <mat-form-field>
+        <input matInput type="password" [(ngModel)]="vpwd" name="vpwd" #vpwd2="ngModel" placeholder="Confirm Password"
+          required>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <div class="text-danger"
+        *ngIf="!(registerForm.value.password==registerForm.value.vpwd) && vpwd2.dirty && vpwd2.touched">
+        <small>Password Mismatch</small>
+      </div>
+      <div *ngIf="vpwd2.errors && (vpwd2.dirty || vpwd2.touched)">
+        <small *ngIf="vpwd2.errors.required" class="text-danger">Please enter Confirm password</small>
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="col-md-12">
+      <button mat-raised-button type="submit" (click)="register(registerForm)">Submit</button>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      <span class="loginurl" (click)="login=true;signUp=false">Back to Login</span>
+    </div>
+  </form>
+</div>

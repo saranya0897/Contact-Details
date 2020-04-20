@@ -1,0 +1,138 @@
+<div *ngIf="data.type === 'addContact'">
+    <h4 align="center" style="font-weight: 500;">{{type ? 'Update' : 'Add'}} &nbsp;Contact</h4>
+
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+        <!-- Full Name -->
+        <div class="row">
+            <div class="col-md-4 margintop">Full Name</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.name" name="name" #name1="ngModel"
+                        placeholder="Full Name" required pattern="[a-zA-z ]{0,20}">
+                    <mat-error *ngIf="name1.errors && (name1.dirty || name1.touched || contactForm.submitted)">
+                        <span *ngIf="name1.errors.required" class="text-danger">Full Name is Required.</span>
+                        <span *ngIf="name1.errors.pattern" class="text-danger">Allowed only Characters.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="row">
+            <div class="col-md-4 margintop">Email</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.email" name="email" #email1="ngModel" required
+                        placeholder="Email"
+                        pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+                    <mat-error *ngIf="email1.errors && (email1.dirty || email1.touched || contactForm.submitted)">
+                        <span *ngIf="email1.errors.required" class="text-danger">Email is Required.</span>
+                        <span *ngIf="email1.errors.pattern" class="text-danger">Invalid Email.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="row">
+            <div class="col-md-4 margintop">Phone Number</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.mobile" name="mobile" #mobile1="ngModel"
+                        placeholder="Phone Number" required pattern="[0-9]{10,15}">
+                    <mat-error *ngIf="mobile1.errors && (mobile1.dirty || mobile1.touched || contactForm.submitted)">
+                        <span *ngIf="mobile1.errors.required" class="text-danger">Phone Number is Required.</span>
+                        <span *ngIf="mobile1.errors.pattern" class="text-danger">Allowed Only Number,Min 10 - 15
+                            Numbers.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Company Name -->
+        <div class="row">
+            <div class="col-md-4 margintop">Company Name</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.companyname" name="companyname"
+                        #companyname1="ngModel" placeholder="Company Name" required pattern="[0-9a-zA-z ]{0,100}">
+                    <mat-error
+                        *ngIf="companyname1.errors && (companyname1.dirty || companyname1.touched || contactForm.submitted)">
+                        <span *ngIf="companyname1.errors.required" class="text-danger">Company Name is Required.</span>
+                        <span *ngIf="companyname1.errors.pattern" class="text-danger">Allowed only alphanumeric
+                            characters.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="row">
+            <div class="col-md-4 margintop">Address</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.address" name="address" #address1="ngModel"
+                        placeholder="Address" required>
+                    <mat-error *ngIf="address1.errors && (address1.dirty || address1.touched || contactForm.submitted)">
+                        <span *ngIf="address1.errors.required" class="text-danger">Address is Required</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Role -->
+        <div class="row">
+            <div class="col-md-4 margintop">Role</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="contact.role" name="role" #roletype="ngModel"
+                        placeholder="Role" required pattern="[a-zA-z ]{0,30}">
+                    <mat-error *ngIf="roletype.errors && (roletype.dirty || roletype.touched || contactForm.submitted)">
+                        <span *ngIf="roletype.errors.required" class="text-danger">Role is Required</span>
+                        <span *ngIf="roletype.errors.pattern" class="text-danger">Allowed Only Characters.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div>&nbsp;</div>
+
+        <!-- Button -->
+        <div style="text-align: center;">
+            <button mat-raised-button type="submit" color="primary">Save</button>&nbsp;&nbsp;
+            <button mat-raised-button (click)="onNoClick()" color="warn">Close</button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="data.type === 'deleteContact'">
+    <h2>Are you sure to delete {{this.contact.name}} ?</h2>
+    <div style="text-align: center;">
+        <button mat-raised-button (click)="dialogRef.close('yes')" color="primary">Yes</button>&nbsp;&nbsp;
+        <button mat-raised-button (click)="onNoClick()" color="warn">No</button>
+    </div>
+</div>
+
+<div *ngIf="data.type === 'sendsms'">
+    <form #sendSmsForm="ngForm" (ngSubmit)="senndSms(sendSmsForm)">
+        <!-- SMS Text -->
+        <div class="row">
+            <div class="col-md-4 margintop">SMS Text</div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput type="text" [(ngModel)]="smstext" name="smstext" #smstext1="ngModel"
+                        placeholder="SMS Text" required maxlength="100">
+                    <mat-error *ngIf="smstext1.errors && (smstext1.dirty || smstext1.touched || sendSmsForm.submitted)">
+                        <span *ngIf="smstext1.errors.required" class="text-danger">SMS Text is Required</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button mat-raised-button type="submit" color="primary">Send</button>&nbsp;&nbsp;
+            <button mat-raised-button type="button" (click)="onNoClick()" color="warn">Cancel</button>
+        </div>
+    </form>
+
+
+</div>

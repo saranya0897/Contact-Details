@@ -1,0 +1,65 @@
+table {
+  width: 100%;
+}
+
+.hovercolor:hover {
+  background: #e6e3e39e;
+  cursor: pointer;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.selectedrow {
+  background: #80808026;
+  max-height: 430px;
+}
+
+.fontsize{
+  font-size: medium;
+  font-weight: 500;
+}
+
+/* Bootstrap 4 text input with search icon */
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.fileUpload input.upload {
+  display: inline-block;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.example-print {
+  display: none;
+}
+
+.active {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.active:hover {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.filler {
+  flex: 1 1 auto;
+}
