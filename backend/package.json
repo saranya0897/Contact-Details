@@ -11,7 +11,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "errorhandler": "^1.5.1",
-    "excel4node": "^1.7.2",
+    "excel4node": "^1.8.0",
     "exceljs": "^3.8.2",
     "express": "^4.9.8",
     "express-jwt": "^5.3.3",
@@ -28,7 +28,7 @@
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "read-excel-file": "^4.0.6",
+    "read-excel-file": "^4.1.0",
     "socket.io": "^1.7.4",
     "socket.io-client": "^1.0.6",
     "socketio-jwt": "^3.0.0"
