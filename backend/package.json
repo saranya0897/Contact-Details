@@ -13,7 +13,7 @@
     "errorhandler": "^1.5.1",
     "excel4node": "^1.7.2",
     "exceljs": "^3.8.2",
-    "express": "^4.9.8",
+    "express": "^4.17.3",
     "express-jwt": "^5.3.3",
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
